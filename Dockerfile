@@ -10,8 +10,10 @@ WORKDIR /app
 COPY package.json ./ 
 
 # install dependencies
-RUN npm install typescript -g && \
+RUN npm install typescript -g && 
     npm install
+
+RUN npm install typescript@4.1 --save-dev
 
 # build
 COPY . ./
