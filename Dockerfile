@@ -9,6 +9,9 @@ WORKDIR /app
 # cache dependencies
 COPY package.json ./ 
 
+# 安装缺失的 Babel 插件
+RUN npm install typescript@4.1 --save-dev
+
 # install dependencies
 RUN npm install typescript -g && \
     npm install
