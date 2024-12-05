@@ -1,5 +1,5 @@
 # BUILDING
-FROM node:lts-alpine AS builder
+FROM --platform=linux/arm64 node:lts-alpine AS builder
 
 # base on work of llitfkitfk@gmail.com
 LABEL maintainer="chibing.fy@alibaba-inc.com"
@@ -7,12 +7,9 @@ LABEL maintainer="chibing.fy@alibaba-inc.com"
 WORKDIR /app
 
 # cache dependencies
-COPY package.json ./
+COPY package.json ./ 
 
-# 在国内打开下面一行加速
-#RUN npm config set registry https://registry.npm.taobao.org/
-
-# instal dependencies
+# install dependencies
 RUN npm install typescript -g && \
     npm install
 
@@ -21,16 +18,17 @@ COPY . ./
 RUN npm run build
 
 # RUNNING
-FROM node:lts-alpine
+FROM --platform=linux/arm64 node:lts-alpine
 
 # base on work of llitfkitfk@gmail.com
 LABEL maintainer="chibing.fy@alibaba-inc.com"
-# use China mirror of: https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-linux.tar.gz
-RUN wget http://rap2-taobao-org.oss-cn-beijing.aliyuncs.com/pandoc-2.7.3-linux.tar.gz && \
-    tar -xf pandoc-2.7.3-linux.tar.gz && \
+
+# Ensure pandoc is available and suitable for ARM architecture
+RUN wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-linux-arm64.tar.gz && \
+    tar -xf pandoc-2.7.3-linux-arm64.tar.gz && \
     cp pandoc-2.7.3/bin/* /usr/bin/ && \
     pandoc -v && \
-    rm -rf pandoc-2.7.3-linux.tar.gz pandoc-2.7.3
+    rm -rf pandoc-2.7.3-linux-arm64.tar.gz pandoc-2.7.3
 
 WORKDIR /app
 COPY --from=builder /app/public .
