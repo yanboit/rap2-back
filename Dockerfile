@@ -13,9 +13,6 @@ COPY package.json ./
 RUN npm install typescript -g && 
     npm install
 
-# tesst
-RUN npm install typescript@4.1 --save-dev
-
 # build
 COPY . ./
 RUN npm run build
