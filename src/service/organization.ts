@@ -68,10 +68,11 @@ export default class OrganizationService {
       ORDER BY id desc
     `
     return new Promise(resolve => {
-      seq.query(sql).then((result: { num: number }[]) => {
-        resolve(result[0].num);
+      seq.query(sql).then(([result]: [unknown[], unknown]) => {
+        // 这里可以强制转换 result 为 { num: number }[] 类型
+        resolve((result as { num: number }[])[0].num);
       });
-    });
+    });    
     
   }
 }
