@@ -7,7 +7,7 @@ version: "3"
 services:
   # frontend
   dolores:
-    image: rap2-web
+    image: rap2web
     ports:
       #冒号前可以自定义前端端口号，冒号后不要动
       - 3008:38081
