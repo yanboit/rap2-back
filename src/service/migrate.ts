@@ -492,9 +492,9 @@ export default class MigrateService {
         domain = 'http://' + domain
       }
       domain = domain.substring(0, domain.indexOf('/', domain.indexOf('.')))
-      const response = await rp.default(`${domain}/api/queryRAPModel.do?projectId=${projectId}`, {
+      const response = await rp(`${domain}/api/queryRAPModel.do?projectId=${projectId}`, {
         json: false,
-      });      
+      });           
       result = JSON.parse(response)
 
       // result =  unescape(result.modelJSON)
