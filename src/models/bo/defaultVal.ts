@@ -8,7 +8,7 @@ export default class DefaultVal extends Model<DefaultVal> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number
+  id: number = 0;
 
   @Column
   name: string
