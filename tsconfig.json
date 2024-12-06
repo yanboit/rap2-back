@@ -1,27 +1,29 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",  // 输出目录
-    "module": "commonjs",  // 模块系统
-    "moduleResolution": "node",  // 模块解析方式
-    "experimentalDecorators": true,  // 启用装饰器
-    "emitDecoratorMetadata": true,  // 启用装饰器元数据
-    "target": "es2019",  // 编译后的 JavaScript 目标版本
-    "removeComments": true,  // 删除注释
-    "sourceMap": true,  // 生成源映射文件
-    "baseUrl": "./src",  // 基础目录
-    "noUnusedLocals": true,  // 禁止未使用的局部变量
-    "noUnusedParameters": true,  // 禁止未使用的参数
-    "noImplicitAny": false,  // 允许隐式 any 类型
-    "skipLibCheck": true,  // 跳过库文件类型检查
-    "noImplicitReturns": true,  // 禁止隐式返回
-    "noImplicitThis": true,  // 禁止隐式 this
-    "rootDir": "./src",  // 根目录
+    "outDir": "./dist",  
+    "module": "commonjs",  
+    "moduleResolution": "node",  
+    "experimentalDecorators": true,  
+    "emitDecoratorMetadata": true,  
+    "target": "es2019",  
+    "removeComments": true,  
+    "sourceMap": true,  
+    "baseUrl": "./src",  
+    "noUnusedLocals": true,  
+    "noUnusedParameters": true,  
+    "noImplicitAny": false,  
+    "skipLibCheck": true,  
+    "noImplicitReturns": true,  
+    "noImplicitThis": true,  
+    "rootDir": "./src",  
     "paths": {
       "*": [
         "node_modules/*",
         "src/types/*"
       ]
-    }
+    },
+    "esModuleInterop": true,  // 启用 esModuleInterop
+    "allowSyntheticDefaultImports": true  // 允许合成的默认导入
   },
   "include": [
     "src/**/*"
