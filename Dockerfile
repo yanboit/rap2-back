@@ -26,6 +26,9 @@ RUN npm install typescript -g && \
 COPY . ./ 
 RUN npm run build
 
+# og
+RUN ls -la /app/dist
+
 # RUNNING
 FROM --platform=linux/arm64 node:lts-alpine
 
