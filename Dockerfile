@@ -44,6 +44,9 @@ RUN wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-linux-ar
 
 WORKDIR /app
 
+# 查看所有文件和目录
+RUN ls -la /app  # 输出 /app 目录的内容
+
 # 修改为正确的目录
 COPY --from=builder /app/public .
 COPY --from=builder /app/build .  # 使用 build 目录而非 dist
