@@ -10,7 +10,7 @@ import * as md5 from 'md5'
 import { isLoggedIn } from './base'
 import { AccessUtils } from './utils/access'
 import { COMMON_ERROR_RES } from './utils/const'
-import * as moment from 'moment'
+import moment from 'moment';
 import RedisService, { CACHE_KEY, DEFAULT_CACHE_VAL } from '../service/redis'
 
 
@@ -58,8 +58,10 @@ router.get('/account/list', isLoggedIn, async (ctx) => {
   }
   let options = { where }
   let total = await User.count(options)
-  let limit = Math.min(+ctx.query.limit ?? 10, 100)
+  // 处理 limit 的默认值，避免 NaN 或无效值
+  let limit = Math.min(isNaN(+ctx.query.limit) ? 10 : +ctx.query.limit, 100)
   let pagination = new Pagination(total, ctx.query.cursor || 1, limit)
+
   ctx.body = {
     data: await User.findAll({
       ...options, ...{
@@ -389,9 +391,9 @@ router.post('/account/findpwd', async (ctx) => {
     })
     if (user) {
       // 截取ID最后两位*日期字符串 作为返回链接的过期校验
-      let idstr = user.id.toString()
-      let timeCode = (parseInt(moment().add(60, 'minutes').format('YYMMDDHHmmss')) * parseInt(idstr.substr(idstr.length - 2))).toString()
-      let token = md5(user.email + user.id + timeCode + String(Math.floor(Math.random() * 99999999)))
+      let idstr = user.id.toString();
+      let timeCode = (parseInt(moment().add(60, 'minutes').format('YYMMDDHHmmss')) * parseInt(idstr.substr(idstr.length - 2))).toString();
+      let token = md5(user.email + user.id + timeCode + String(Math.floor(Math.random() * 99999999)));
       await RedisService.setCache(CACHE_KEY.PWDRESETTOKEN_GET, token, user.id)
       let link = `${ctx.headers.origin}/account/resetpwd?code=${timeCode}&email=${email}&token=${token}`
       let content = MailService.mailFindpwdTemp.replace(/{=EMAIL=}/g, user.email).replace(/{=URL=}/g, link).replace(/{=NAME=}/g, user.fullname)
