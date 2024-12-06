@@ -45,8 +45,9 @@ export default class OrganizationService {
       LIMIT ${pager.start}, ${pager.limit}
     `
     return new Promise(resolve => {
-      seq.query(sql).then((result: { id: number }[]) => {
-        resolve(result.map(item => item.id));
+      seq.query(sql).then((result: [unknown[], unknown]) => {
+        const ids = result[0].map((item: { id: number }) => item.id);
+        resolve(ids);
       });
     });
     
