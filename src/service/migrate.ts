@@ -3,7 +3,7 @@ import { SCOPES } from '../models/bo/property'
 import Tree from '../routes/utils/tree'
 import * as JSON5 from 'json5'
 import * as querystring from 'querystring'
-import * as rp from 'request-promise'
+import rp from 'request-promise';
 import { Op } from 'sequelize'
 import RedisService, { CACHE_KEY } from './redis'
 import MailService from './mail'
@@ -492,9 +492,9 @@ export default class MigrateService {
         domain = 'http://' + domain
       }
       domain = domain.substring(0, domain.indexOf('/', domain.indexOf('.')))
-      const response = await rp(`${domain}/api/queryRAPModel.do?projectId=${projectId}`, {
+      const response = await rp.default(`${domain}/api/queryRAPModel.do?projectId=${projectId}`, {
         json: false,
-      })
+      });      
       result = JSON.parse(response)
 
       // result =  unescape(result.modelJSON)
