@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "module": "esnext",  // 保持esnext以支持模块化的最新特性
-    "target": "esnext",  // 使用esnext来支持模板字符串类型等新特性
+    "module": "esnext", 
+    "target": "esnext", 
     "jsx": "preserve",
     "rootDir": "./",
-    "outDir": "build",
+    "outDir": "build",  // 确保输出目录设置为 build
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
@@ -18,27 +18,26 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "noEmitHelpers": true,
-    "skipLibCheck": true,  // 跳过库文件类型检查，减少编译时间
+    "skipLibCheck": true,
     "preserveConstEnums": true,
     "allowJs": false,
-    "strict": false,  // 如果需要严格模式，设置为 true
+    "strict": false,
     "declaration": false,
     "emitDecoratorMetadata": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "moduleResolution": "node",
-    "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
+    "noEmitOnError": true, 
     "baseUrl": "./src",
     "lib": [
       "dom",
       "es2016",
       "es2017.object"
     ],
-    "esModuleInterop": true,  // 确保可以与 CommonJS 模块进行互操作
+    "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,  // 将 noEmit 设置为 false 以生成文件
     "strictNullChecks": false
   },
   "filesGlob": [
