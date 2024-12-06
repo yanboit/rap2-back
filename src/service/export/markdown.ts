@@ -1,6 +1,6 @@
 import { Repository, Interface, Module, Property } from '../../models'
 import dedent from '../../helpers/dedent'
-import * as moment from 'moment'
+import moment from 'moment'
 import { asTree } from 'treeify'
 
 const arrayToTree = (list: any[]): any => {
