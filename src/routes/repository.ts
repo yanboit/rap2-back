@@ -14,7 +14,7 @@ import { Op } from 'sequelize'
 import { isLoggedIn } from './base'
 
 import { initRepository, initModule } from './utils/helper'
-import { nanoid } from 'nanoid';
+import nanoid from 'nanoid';
 import { LOG_SEPERATOR, LOG_SUB_SEPERATOR } from '../models/bo/historyLog'
 import { ENTITY_TYPE } from './utils/const'
 import { IPager } from '../types'
