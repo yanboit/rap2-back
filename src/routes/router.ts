@@ -1,4 +1,4 @@
-import * as Router from 'koa-router'
+import Router from 'koa-router';
 import { DefaultState, DefaultContext } from "koa"
 import config from '../config'
 
