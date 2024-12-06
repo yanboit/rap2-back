@@ -1,7 +1,6 @@
 import seq from '../models/sequelize'
 import Pagination from '../routes/utils/pagination'
 import Utils from './utils'
-import * as Bluebird from 'bluebird';
 export default class OrganizationService {
   public static canUserAccessOrganization(userId: number, organizationId: number): Promise<boolean> {
     const sql = `
@@ -17,11 +16,13 @@ export default class OrganizationService {
       ) as result
       WHERE id = ${organizationId}
     `
-    return new Bluebird(resolve => {
-      Bluebird.resolve(seq.query(sql)).spread((result: any) => {
+    return new Promise(resolve => {
+      seq.query(sql).then((result: any) => {
         resolve(+result[0].num > 0);
+      }).catch(err => {
+        // 处理错误
       });
-    });
+    });    
   }
 
   public static getAllOrganizationIdList(curUserId: number, pager: Pagination, query?: string): Promise<number[]> {
