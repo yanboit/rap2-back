@@ -19,10 +19,10 @@ export default class OrganizationService {
     return new Promise(resolve => {
       seq.query(sql).then((result: any) => {
         resolve(+result[0].num > 0);
-      }).catch(err => {
-        // 处理错误
+      }).catch(() => {
+        // 错误处理逻辑（如果没有需要处理的错误，可以为空）
       });
-    });    
+    });        
   }
 
   public static getAllOrganizationIdList(curUserId: number, pager: Pagination, query?: string): Promise<number[]> {
