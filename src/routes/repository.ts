@@ -14,7 +14,7 @@ import { Op } from 'sequelize'
 import { isLoggedIn } from './base'
 
 import { initRepository, initModule } from './utils/helper'
-import nanoid = require('nanoid')
+import { nanoid } from 'nanoid';
 import { LOG_SEPERATOR, LOG_SUB_SEPERATOR } from '../models/bo/historyLog'
 import { ENTITY_TYPE } from './utils/const'
 import { IPager } from '../types'
@@ -82,7 +82,7 @@ router.get('/repository/list', async (ctx) => {
       QueryInclude.Locker
     ]
   })
-  let limit = Math.min(+ctx.query.limit ?? 10, 100)
+  let limit = Math.min(Number(ctx.query.limit) || 10, 100);
   let pagination = new Pagination(total, ctx.query.cursor || 1, limit)
   let repositories = await Repository.findAll({
     where,
