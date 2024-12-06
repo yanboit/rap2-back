@@ -41,7 +41,7 @@ export default class Module extends Model<Module> {
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number
+  id: number = 0;
 
   @AllowNull(false)
   @Column(DataType.STRING(256))

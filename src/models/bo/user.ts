@@ -7,7 +7,7 @@ export default class User extends Model<User> {
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number
+  id: number = 0;
 
   @AllowNull(false)
   @Column(DataType.STRING(32))

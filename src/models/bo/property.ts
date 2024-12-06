@@ -12,7 +12,7 @@ export default class Property extends Model<Property> {
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number
+  id: number = 0;
 
   static attributes: any
 

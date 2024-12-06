@@ -6,7 +6,7 @@ export default class Notification extends Model<Notification> {
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number
+  id: number = 0;
 
   @Column({ comment: 'sender' })
   fromId: number

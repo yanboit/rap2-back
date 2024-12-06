@@ -10,7 +10,7 @@ export default class HistoryLog extends Model<HistoryLog> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  id: number
+  id: number = 0;
 
   /**
    * ENTITY_TYPE.INTERFACE: 接口级日志

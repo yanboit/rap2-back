@@ -55,7 +55,7 @@ export default class Interface extends Model<Interface> {
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number
+  id: number = 0;
 
   @AllowNull(false)
   @Column(DataType.STRING(256))

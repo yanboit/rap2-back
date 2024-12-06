@@ -17,7 +17,7 @@ export default class Organization extends Model<Organization> {
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number
+  id: number = 0;
 
   @AllowNull(false)
   @Column(DataType.STRING(256))

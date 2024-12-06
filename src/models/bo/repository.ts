@@ -26,7 +26,7 @@ export default class Repository extends Model<Repository> {
   @AutoIncrement
   @PrimaryKey
   @Column
-  id: number
+  id: number = 0;
 
   @AllowNull(false)
   @Column(DataType.STRING(256))
