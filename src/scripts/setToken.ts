@@ -1,5 +1,5 @@
 // 补数据 token
-import nanoid = require("nanoid")
+import nanoid from "nanoid"
 import sequelize from "../models/sequelize"
 import { Repository } from "../models"
 const chalk = require("chalk");
