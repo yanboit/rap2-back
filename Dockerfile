@@ -22,7 +22,7 @@ COPY . ./
 RUN npm run build
 
 # 添加调试命令：列出构建后的目录
-RUN ls -la /app  # 输出 /app 目录内容
+RUN ls -la /app/dist  # 输出 dist 目录内容
 
 # RUNNING
 FROM --platform=linux/arm64 node:lts-alpine
@@ -38,5 +38,10 @@ RUN wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-linux-ar
 
 WORKDIR /app
 
-# 列出 /app 目录的内容，确认 build 目录是否存在
+# 列出 /app 目录的内容，确认 dist 目录是否存在
 RUN ls -la /app  # 输出 /app 目录内容
+
+# 复制构建产物到运行环境
+COPY --from=builder /app/public .  # 如果 public 目录存在
+COPY --from=builder /app/dist .  # 使用 dist 目录
+COPY --from=builder /app/node_modules ./node_modules
