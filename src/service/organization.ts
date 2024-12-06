@@ -45,10 +45,11 @@ export default class OrganizationService {
       LIMIT ${pager.start}, ${pager.limit}
     `
     return new Promise(resolve => {
-      seq.query(sql).spread((result: { id: number }[]) => {
-        resolve(result.map(item => item.id))
-      })
-    })
+      seq.query(sql).then((result: { id: number }[]) => {
+        resolve(result.map(item => item.id));
+      });
+    });
+    
   }
 
   public static getAllOrganizationIdListNum(curUserId: number): Promise<number> {
@@ -66,9 +67,10 @@ export default class OrganizationService {
       ORDER BY id desc
     `
     return new Promise(resolve => {
-      seq.query(sql).spread((result: { num: number }[]) => {
-        resolve(result[0].num)
-      })
-    })
+      seq.query(sql).then((result: { num: number }[]) => {
+        resolve(result[0].num);
+      });
+    });
+    
   }
 }
