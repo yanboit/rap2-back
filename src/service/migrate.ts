@@ -3,7 +3,7 @@ import { SCOPES } from '../models/bo/property'
 import Tree from '../routes/utils/tree'
 import * as JSON5 from 'json5'
 import * as querystring from 'querystring'
-import rp from 'request-promise';
+import rp from 'request-promise-native';
 import { Op } from 'sequelize'
 import RedisService, { CACHE_KEY } from './redis'
 import MailService from './mail'
