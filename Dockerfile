@@ -23,7 +23,7 @@ RUN npm install typescript -g && \
     npm install
 
 # build
-COPY . ./
+COPY . ./ 
 RUN npm run build
 
 # RUNNING
@@ -33,11 +33,11 @@ FROM --platform=linux/arm64 node:lts-alpine
 LABEL maintainer="chibing.fy@alibaba-inc.com"
 
 # Ensure pandoc is available and suitable for ARM architecture
-RUN wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-linux-arm64.tar.gz && \
-    tar -xf pandoc-2.7.3-linux-arm64.tar.gz && \
-    cp pandoc-2.7.3/bin/* /usr/bin/ && \
+RUN wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-linux-arm64.tar.gz && \
+    tar -xf pandoc-3.5-linux-arm64.tar.gz && \
+    cp pandoc-3.5/bin/* /usr/bin/ && \
     pandoc -v && \
-    rm -rf pandoc-2.7.3-linux-arm64.tar.gz pandoc-2.7.3
+    rm -rf pandoc-3.5-linux-arm64.tar.gz pandoc-3.5
 
 WORKDIR /app
 COPY --from=builder /app/public .
